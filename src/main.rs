@@ -69,7 +69,7 @@ fn open_file(path: &str) -> File {
 }
 
 fn write_to_file(file: &mut File, file_path: &Path, data: String) {
-    let data = format!("\n{}\n",data);
+    let data = format!("{}\n",data);
     let _ = match file.write(data.as_bytes()) {
         Ok(b) => println!(
             "Wrote {} bytes to file {:?}:\n{}",
