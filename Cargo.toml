@@ -1,0 +1,11 @@
+[package]
+name = "starred_music_rs"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+
+[dependencies]
+chrono = "0.4.19"
+chrono-tz = "0.6.1"
+dirs = "4.0.0"
