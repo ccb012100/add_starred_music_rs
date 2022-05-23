@@ -1,9 +1,9 @@
+use chrono::{DateTime, Datelike, Utc};
 use std::{
     fmt,
     io::{Error, ErrorKind},
     str::FromStr,
 };
-use chrono::{Datelike, Utc, DateTime};
 
 #[derive(Debug)]
 pub(crate) struct AlbumString(pub(crate) String);
@@ -16,6 +16,15 @@ pub(crate) struct ReleaseYear(pub(crate) i32);
 
 #[derive(Debug)]
 pub(crate) struct TrackCount(pub(crate) u16);
+
+#[derive(Debug)]
+pub(crate) struct Album {
+    name: AlbumString,
+    artist: AlbumString,
+    tracks: TrackCount,
+    release_year: ReleaseYear,
+    date_added: DateAdded,
+}
 
 impl fmt::Display for DateAdded {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -38,6 +47,23 @@ impl fmt::Display for TrackCount {
 impl fmt::Display for ReleaseYear {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{}", self.0)
+    }
+}
+
+impl fmt::Display for Album {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            r#"Album
+{{
+    name:       {}
+    artist:     {}
+    tracks:     {}
+    released:   {}
+    added:      {}
+}}"#,
+            self.name, self.artist, self.tracks, self.release_year, self.date_added
+        )
     }
 }
 
@@ -116,15 +142,6 @@ impl DateAdded {
     pub(crate) fn new() -> Self {
         DateAdded(Utc::now())
     }
-}
-
-#[derive(Debug)]
-pub(crate) struct Album {
-    name: AlbumString,
-    artist: AlbumString,
-    tracks: TrackCount,
-    release_year: ReleaseYear,
-    date_added: DateAdded,
 }
 
 impl Album {
