@@ -9,6 +9,10 @@ mod user_input;
 use album::Album;
 
 pub fn add_album() {
+    if cfg!(windows) {
+        let _enabled = ansi_term::enable_ansi_support();
+    }
+
     // TODO: make this configurable and/or an input arg
     let file_path: &str = "ccb012100/starred_music/starredmusic.tsv";
     let args: Vec<String> = env::args().collect();
@@ -44,7 +48,9 @@ pub fn add_album() {
     // io::stdout().lock().flush().unwrap();
 
     match user_input::get_user_choice() {
-        user_input::UserChoice::Yes => file_handling::write_to_file(&mut file, file_path, album.to_tsv_entry()),
+        user_input::UserChoice::Yes => {
+            file_handling::write_to_file(&mut file, file_path, album.to_tsv_entry())
+        }
         user_input::UserChoice::No => exit(OK),
     }
 }
