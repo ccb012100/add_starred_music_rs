@@ -15,7 +15,7 @@ pub fn add_album() {
     }
 
     // TODO: make this configurable and/or an input arg
-    let file_path: &str = "ccb012100/starred_music/starredmusic.tsv";
+    let file_path: &str = "ccb012100/starred-music/starredmusic.tsv";
     let args: Vec<String> = env::args().collect();
 
     let (mut file, album): (File, Album) = match args.len() {
