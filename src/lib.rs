@@ -10,7 +10,8 @@ use album::Album;
 
 pub fn add_album() {
     if cfg!(windows) {
-        let _enabled = ansi_term::enable_ansi_support();
+        // FIXME: why isn't this working on Ubuntu?
+        // let _enabled = ansi_term::enable_ansi_support();
     }
 
     // TODO: make this configurable and/or an input arg

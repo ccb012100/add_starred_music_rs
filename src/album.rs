@@ -163,7 +163,7 @@ impl Album {
     pub(crate) fn to_tsv_entry(&self) -> String {
         format!(
             "{}\t{}\t{}\t{}\t{}",
-            self.name, self.artist, self.tracks, self.release_year, self.date_added
+            self.artist, self.name, self.tracks, self.release_year, self.date_added
         )
     }
 }

@@ -16,8 +16,8 @@ pub(crate) enum UserChoice {
 
 pub(crate) fn parse_input_args(input: &[String]) -> Album {
     /* Input should be in one of the following formats:
-    4 args -> "name" "artist" track_count release_year
-    1 arg  -> "name;;artist;;track_count;;release_year" */
+    4 args -> "artist" "name" track_count release_year
+    1 arg  -> "artist;;name;;track_count;;release_year" */
     let input_string: String = match input.len() {
         4 => input.join(";;"),
         1 => input[0].to_string(),
@@ -32,8 +32,8 @@ pub(crate) fn parse_input_args(input: &[String]) -> Album {
 
     let mut errors = Vec::<String>::new();
 
-    let album_name: Result<AlbumString, Error> = AlbumString::from_str(album_fields[0]);
-    let artist: Result<AlbumString, Error> = AlbumString::from_str(album_fields[1]);
+    let artist: Result<AlbumString, Error> = AlbumString::from_str(album_fields[0]);
+    let album_name: Result<AlbumString, Error> = AlbumString::from_str(album_fields[1]);
     let track_count: Result<TrackCount, Error> = TrackCount::from_str(album_fields[2]);
     let release_year: Result<ReleaseYear, Error> = ReleaseYear::from_str(album_fields[3]);
 
